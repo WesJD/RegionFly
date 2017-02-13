@@ -1,0 +1,6 @@
+name: RegionFly
+main: net.wesjd.regionfly.RegionFly
+author: WesJD
+website: https://wesjd.net
+version: ${version}
+depend: [WorldGuard]
