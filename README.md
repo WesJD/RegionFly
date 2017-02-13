@@ -6,4 +6,4 @@ A simple bukkit plugin for players to fly when they enter a specified region.
 * Setup the config.yml with your regions
 * Restart the server
 
-## [Download](https://github.com/WesJD/RecursiveItems/releases)
+## [Download](https://github.com/WesJD/RegionFly/releases)
