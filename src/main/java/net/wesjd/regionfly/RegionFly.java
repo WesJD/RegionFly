@@ -2,7 +2,6 @@ package net.wesjd.regionfly;
 
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -30,12 +29,17 @@ public class RegionFly extends JavaPlugin implements Listener {
         final Location from = e.getFrom();
         if(from.getBlockX() != to.getBlockX() || from.getBlockY() != to.getBlockY() || from.getBlockZ() != to.getBlockZ()) {
             final Player player = e.getPlayer();
+
             if(player.getGameMode() != GameMode.CREATIVE) {
                 final boolean wasFlying = player.isFlying();
                 final boolean fly = isInARegion(to);
-                player.setAllowFlight(fly);
-                player.setFlying(fly);
-                if(fly && !wasFlying) player.teleport(player.getLocation().add(0, 0.2, 0));
+
+                // player has walked into/out of a region
+                if(player.getAllowFlight() != fly) {
+                    player.setAllowFlight(fly);
+                    player.setFlying(fly);
+                    if(fly && !wasFlying) player.teleport(player.getLocation().add(0, 0.2, 0));
+                }
             }
         }
     }
